@@ -1,0 +1,20 @@
+.list_title {
+    text-align: center;
+}
+
+.film_list {
+    text-align: center;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-evenly;
+}
+
+.film_item {
+    width: 300px;
+    height: 40px;
+    border: 1px solid black;
+    border-radius: 8px;
+    color: white;
+    background-color: rgb(170, 223, 214);
+    margin-bottom: 5px;
+}
