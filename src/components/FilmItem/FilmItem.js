@@ -23,11 +23,13 @@ const FilmItem = ({ match }) => {
     <>
       <img src={arrow} alt="arrow_back" className="back" onClick={goBack} />
       <div className="full_info">
-        <img
-          src={`https://image.tmdb.org/t/p/original${film.poster_path}`}
-          alt={film.original_title}
-          className="film_img"
-        />
+        {film.poster_path && (
+          <img
+            src={`https://image.tmdb.org/t/p/original${film.poster_path}`}
+            alt={film.original_title}
+            className="film_img"
+          />
+        )}
         <div className="item_info">
           <h2 className="title">{film.original_title}</h2>
           <p>{`Popularitu ${film.popularity}`}</p>
@@ -45,10 +47,10 @@ const FilmItem = ({ match }) => {
         <p className="aditional_title"> Aditional Information</p>
         <ul>
           <li>
-            <NavLink to={`${id}/cast`}>Cast</NavLink>
+            <NavLink to={`/movies/${id}/cast`}>Cast</NavLink>
           </li>
           <li>
-            <NavLink to={`${id}/reviews`}>Reviews</NavLink>
+            <NavLink to={`/movies/${id}/reviews`}>Reviews</NavLink>
           </li>
         </ul>
       </div>
