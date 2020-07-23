@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import axios from "axios";
+import { showAllInfo } from "../../helpers/rejuest";
 import { NavLink, Switch, Route, useHistory } from "react-router-dom";
 import Cast from "../Cast/Cast";
 import Reviews from "../Reviews/Reviews";
@@ -11,17 +11,9 @@ const FilmItem = ({ match }) => {
   const [film, setFilm] = useState([]);
   const history = useHistory();
 
-  const showAllInfo = () => {
-    return axios
-      .get(
-        `https://api.themoviedb.org/3/movie/${id}?api_key=${process.env.REACT_APP_KEY}&language=en-US`
-      )
-      .then(({ data }) => setFilm(data));
-  };
-
   useEffect(() => {
-    showAllInfo();
-  }, []);
+    showAllInfo(id).then(({ data }) => setFilm(data));
+  }, [id]);
 
   const goBack = () => {
     history.goBack();

@@ -1,24 +1,18 @@
 import React, { useEffect, useState } from "react";
-import axios from "axios";
+import { viewCredits } from "../../helpers/rejuest";
 import "./Cast.css";
 
 const Cast = ({ id }) => {
   const [credits, setCredits] = useState([]);
 
-  const viewCredits = () => {
-    axios
-      .get(
-        `https://api.themoviedb.org/3/movie/${id}/credits?api_key=a71ee21a323f0746cf52494ffbbd4ef9`
-      )
+  useEffect(() => {
+    viewCredits(id)
       .then(({ data }) => {
         const info = data.cast;
         setCredits(info);
-      });
-  };
-
-  useEffect(() => {
-    viewCredits();
-  }, []);
+      })
+      .catch((error) => console.log(error));
+  }, [id]);
 
   return (
     <ul className="cast_list">

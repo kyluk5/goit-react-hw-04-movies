@@ -1,23 +1,18 @@
 import React, { useEffect, useState } from "react";
-import axios from "axios";
+import { getReview } from "../../helpers/rejuest";
 
 const Reviews = ({ id }) => {
   const [reviews, setReviews] = useState([]);
   console.log(reviews);
-  const getReview = () => {
-    axios
-      .get(
-        `https://api.themoviedb.org/3/movie/${id}/reviews?api_key=a71ee21a323f0746cf52494ffbbd4ef9&language=en-US&page=1`
-      )
+
+  useEffect(() => {
+    getReview(id)
       .then(({ data }) => {
         const reviews = data.results;
         setReviews(reviews);
-      });
-  };
-
-  useEffect(() => {
-    getReview();
-  }, []);
+      })
+      .catch((error) => console.log(error));
+  }, [id]);
 
   return reviews.map((item) => (
     <div key={item.author}>
