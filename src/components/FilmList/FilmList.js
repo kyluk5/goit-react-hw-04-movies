@@ -1,17 +1,17 @@
 import React from "react";
-import { Link } from "react-router-dom";
+import { NavLink } from "react-router-dom";
 import "./FilmList.css";
 
-const FilmList = ({ data, match }) => {
-  const list = [...data];
-
+const FilmList = ({ films }) => {
   return (
     <>
       <h1 className="list_title">Search List</h1>
       <ul className="film_list">
-        {list.map((item) => (
+        {films.map((item) => (
           <li key={item.id} className="film_item">
-            <Link to={`${match.url}${item.id}`}>{item.title}</Link>
+            <NavLink to={`movies/${item.id}`} className="film_link">
+              {item.title}
+            </NavLink>
           </li>
         ))}
       </ul>

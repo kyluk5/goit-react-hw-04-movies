@@ -12,7 +12,7 @@ const Home = ({ match }) => {
 https://api.themoviedb.org/3/trending/movie/day?api_key=${process.env.REACT_APP_KEY}`
       )
       .then((data) => {
-        const arr = data.data.results;
+        const arr = [...data.data.results];
         setFilms(arr);
       })
       .catch((error) => console.log(error));
@@ -22,11 +22,7 @@ https://api.themoviedb.org/3/trending/movie/day?api_key=${process.env.REACT_APP_
     popularFilms();
   }, []);
 
-  return (
-    <>
-      <FilmList data={films} match={match} />
-    </>
-  );
+  return <FilmList films={films} />;
 };
 
 export default Home;

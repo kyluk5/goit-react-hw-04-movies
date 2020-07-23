@@ -1,0 +1,26 @@
+.back {
+    position: absolute;
+    left: 16px;
+    top: 76px;
+    width: 40px;
+    height: 40px;
+}
+
+.full_info {
+    display: flex;
+    justify-content: space-evenly;
+}
+
+.film_img {
+    width: 200px;
+}
+
+.overview {
+    width: 800px;
+}
+
+.aditional_information {
+    background-color: gray;
+    height: 100px;
+    color: white;
+}
