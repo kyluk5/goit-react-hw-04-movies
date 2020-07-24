@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react";
 import { popularFilms } from "../../helpers/rejuest";
 import FilmList from "../../components/FilmList/FilmList";
 
-const Home = ({ match }) => {
+const Home = () => {
   const [films, setFilms] = useState([]);
 
   useEffect(() => {

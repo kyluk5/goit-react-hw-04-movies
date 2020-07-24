@@ -6,7 +6,7 @@ import "./Movies.css";
 const Movies = () => {
   const [search, setSearch] = useState("");
   const [result, setResult] = useState([]);
-  console.log(result);
+
   const searchValue = ({ target }) => {
     setSearch(target.value);
   };
