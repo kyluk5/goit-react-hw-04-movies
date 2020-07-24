@@ -1,8 +1,9 @@
 import React from "react";
-import { NavLink } from "react-router-dom";
+import { NavLink, useLocation } from "react-router-dom";
 import "./FilmList.css";
 
 const FilmList = ({ films, query = "" }) => {
+  const location = useLocation();
   return (
     films.length > 0 && (
       <>
@@ -14,7 +15,7 @@ const FilmList = ({ films, query = "" }) => {
                 to={{
                   pathname: `movies/${item.id}`,
                   state: {
-                    from: `/movies`,
+                    from: `${location.pathname}`,
                     search: query,
                   },
                 }}

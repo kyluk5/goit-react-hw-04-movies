@@ -29,12 +29,12 @@ const FilmItem = ({ match }) => {
       setSearch(location.state.search);
       setFrom(location.state.from);
     }
-  }, [id, location]);
+  }, [id, location.state]);
 
   const changePage = () => {
     history.push({
       pathname: from,
-      search: `query=${search}`,
+      search: search && `query=${search}`,
       state: {
         search,
       },

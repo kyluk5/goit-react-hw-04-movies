@@ -16,13 +16,14 @@ const Movies = () => {
   useEffect(() => {
     if (location.state) {
       setSearch(location.state.search);
-
-      searchFilm(search).then(({ data }) => {
-        const arr = data.results;
-        setResult(arr);
-      });
+      if (search) {
+        searchFilm(search).then(({ data }) => {
+          const arr = data.results;
+          setResult(arr);
+        });
+      }
     }
-  }, [location, search]);
+  }, [location.state, search]);
 
   const subForm = (e) => {
     e.preventDefault();
@@ -30,10 +31,10 @@ const Movies = () => {
       const arr = data.results;
       setResult(arr);
     });
-    // setSearch("");
+
     history.push({
       pathname: `/movies`,
-      search: `query=${search}`,
+      search: search && `query=${search}`,
     });
   };
 
