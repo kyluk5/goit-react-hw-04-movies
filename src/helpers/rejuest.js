@@ -24,3 +24,9 @@ export const getReview = (id) => {
     `https://api.themoviedb.org/3/movie/${id}/reviews?api_key=${process.env.REACT_APP_KEY}&language=en-US&page=1`
   );
 };
+
+export const searchFilm = (string) => {
+  return axios.get(
+    `https://api.themoviedb.org/3/search/movie?api_key=${process.env.REACT_APP_KEY}&language=en-US&query=${string}&page=1&include_adult=false`
+  );
+};
