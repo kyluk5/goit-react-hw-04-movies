@@ -14,7 +14,7 @@ const Cast = ({ id }) => {
       .catch((error) => console.log(error));
   }, [id]);
 
-  return (
+  return credits.length > 0 ? (
     <ul className="cast_list">
       {credits.map((item) => (
         <li className="cast_item" key={item.id}>
@@ -31,6 +31,8 @@ const Cast = ({ id }) => {
         </li>
       ))}
     </ul>
+  ) : (
+    <p>Sory we dont have any Casts :(</p>
   );
 };
 

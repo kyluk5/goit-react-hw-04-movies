@@ -3,7 +3,6 @@ import { getReview } from "../../helpers/rejuest";
 
 const Reviews = ({ id }) => {
   const [reviews, setReviews] = useState([]);
-  console.log(reviews);
 
   useEffect(() => {
     getReview(id)
@@ -22,7 +21,7 @@ const Reviews = ({ id }) => {
       </div>
     ))
   ) : (
-    <p>Sorry we dont have any reviews :(</p>
+    <p>Sory we dont have any reviews :(</p>
   );
 };
 

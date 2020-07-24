@@ -1,27 +1,50 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState, lazy, Suspense } from "react";
 import { showAllInfo } from "../../helpers/rejuest";
-import { NavLink, Switch, Route, useHistory } from "react-router-dom";
-import Cast from "../Cast/Cast";
-import Reviews from "../Reviews/Reviews";
+import {
+  NavLink,
+  Switch,
+  Route,
+  useHistory,
+  useLocation,
+} from "react-router-dom";
 import arrow from "./Back_Arrow.png";
 import "./FilmItem.css";
+
+const Cast = lazy(() => import("../Cast/Cast" /* webpackChunkName: "Cast" */));
+const Reviews = lazy(() =>
+  import("../Reviews/Reviews" /* webpackChunkName: "Reviews" */)
+);
 
 const FilmItem = ({ match }) => {
   const id = match.params.movieId;
   const [film, setFilm] = useState([]);
+  const [search, setSearch] = useState("");
+  const [from, setFrom] = useState("");
+  const location = useLocation();
   const history = useHistory();
 
   useEffect(() => {
     showAllInfo(id).then(({ data }) => setFilm(data));
-  }, [id]);
+    if (location.state) {
+      setSearch(location.state.search);
+      setFrom(location.state.from);
+    }
+  }, [id, location]);
 
-  const goBack = () => {
-    history.goBack();
+  const changePage = () => {
+    history.push({
+      pathname: from,
+      search: `query=${search}`,
+      state: {
+        search,
+      },
+    });
   };
 
   return (
     <>
-      <img src={arrow} alt="arrow_back" className="back" onClick={goBack} />
+      <img src={arrow} alt="arrow_back" className="back" onClick={changePage} />
+
       <div className="full_info">
         {film.poster_path && (
           <img
@@ -54,16 +77,18 @@ const FilmItem = ({ match }) => {
           </li>
         </ul>
       </div>
-      <Switch>
-        <Route
-          path="/movies/:movieId/cast"
-          render={(props) => <Cast {...props} id={id} />}
-        />
-        <Route
-          path="/movies/:movieId/reviews"
-          render={(props) => <Reviews {...props} id={id} />}
-        />
-      </Switch>
+      <Suspense fallback={<h1>Loadind...</h1>}>
+        <Switch>
+          <Route
+            path="/movies/:movieId/cast"
+            render={(props) => <Cast {...props} id={id} />}
+          />
+          <Route
+            path="/movies/:movieId/reviews"
+            render={(props) => <Reviews {...props} id={id} />}
+          />
+        </Switch>
+      </Suspense>
     </>
   );
 };

@@ -1,15 +1,28 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { searchFilm } from "../../helpers/rejuest";
 import FilmList from "../../components/FilmList/FilmList";
+import { useHistory, useLocation } from "react-router-dom";
 import "./Movies.css";
 
 const Movies = () => {
   const [search, setSearch] = useState("");
   const [result, setResult] = useState([]);
-
+  const history = useHistory();
+  const location = useLocation();
   const searchValue = ({ target }) => {
     setSearch(target.value);
   };
+
+  useEffect(() => {
+    if (location.state) {
+      setSearch(location.state.search);
+
+      searchFilm(search).then(({ data }) => {
+        const arr = data.results;
+        setResult(arr);
+      });
+    }
+  }, [location, search]);
 
   const subForm = (e) => {
     e.preventDefault();
@@ -17,7 +30,11 @@ const Movies = () => {
       const arr = data.results;
       setResult(arr);
     });
-    setSearch("");
+    // setSearch("");
+    history.push({
+      pathname: `/movies`,
+      search: `query=${search}`,
+    });
   };
 
   return (
@@ -39,7 +56,7 @@ const Movies = () => {
           />
         </form>
       </div>
-      <FilmList films={result} />
+      <FilmList films={result} query={search} />
     </>
   );
 };
