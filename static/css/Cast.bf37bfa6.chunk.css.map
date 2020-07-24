@@ -1,0 +1,1 @@
+{"version":3,"sources":["Cast.css"],"names":[],"mappings":"AAAA,WACI,YAAa,CACb,cAAe,CACf,4BAA6B,CAC7B,kBACJ,CAEA,UACI,WACJ","file":"Cast.bf37bfa6.chunk.css","sourcesContent":[".cast_list {\n    display: flex;\n    flex-wrap: wrap;\n    justify-content: space-evenly;\n    align-items: center;\n}\n\n.cast_img {\n    width: 100px;\n}"]}
