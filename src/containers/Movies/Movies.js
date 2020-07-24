@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { searchFilm } from "../../helpers/rejuest";
-// import FilmList from "../../components/FilmList/FilmList";
+import FilmList from "../../components/FilmList/FilmList";
 import "./Movies.css";
 
 const Movies = () => {
@@ -39,7 +39,7 @@ const Movies = () => {
           />
         </form>
       </div>
-      {/* <FilmList result={result} /> */}
+      <FilmList films={result} />
     </>
   );
 };
