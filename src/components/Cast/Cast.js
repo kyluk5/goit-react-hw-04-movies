@@ -17,7 +17,7 @@ const Cast = ({ id }) => {
   return credits.length > 0 ? (
     <ul className="cast_list">
       {credits.map((item) => (
-        <li className="cast_item" key={item.id}>
+        <li className="cast_item" key={item.cast_id}>
           {item.profile_path && (
             <>
               <img
@@ -32,7 +32,7 @@ const Cast = ({ id }) => {
       ))}
     </ul>
   ) : (
-    <p>Sory we dont have any Casts :(</p>
+    <p>Sory we dont have any Casts </p>
   );
 };
 

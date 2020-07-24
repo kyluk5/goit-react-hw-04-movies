@@ -21,7 +21,7 @@ const Reviews = ({ id }) => {
       </div>
     ))
   ) : (
-    <p>Sory we dont have any reviews :(</p>
+    <p>Sory we dont have any reviews </p>
   );
 };
 
