@@ -12,11 +12,11 @@
 }
 
 .film_img {
-    width: 200px;
+    max-width: 200px;
 }
 
 .overview {
-    width: 800px;
+    max-width: 800px;
 }
 
 .aditional_information {
